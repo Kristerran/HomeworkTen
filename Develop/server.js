@@ -29,12 +29,11 @@ app.post('/api/notes', (req, res) => {
     newNote
   )
   let noteString = JSON.stringify(notes)
-  fs.appendFile('./db/db.json', noteString, (err) => {
+  fs.writeFile('./db/db.json', noteString, (err) => {
     if (err) {
       console.log(err);
     }
     else {
-      // Get the file contents after the append operation
       console.log('note added successfully')
     }
   });
