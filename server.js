@@ -30,8 +30,12 @@ app.post('/api/notes', (req, res) => {
   let notesJson = JSON.parse(notes)
   notesJson.push(
     newNote
-  )
+  );
+  notesJson.forEach((item, i) => {
+    item.id = i+1
+  });
   let noteString = JSON.stringify(notesJson)
+  console.log(typeof(notesJson));
   fs.writeFile('./db/db.json', noteString, (err) => {
     if (err) {
       console.log(err);
